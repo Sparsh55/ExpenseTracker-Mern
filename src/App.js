@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import store from './redux/store';
+import HomePage from './Pages/HomePage';
+import LoginPage from './Pages/LoginPage';
+import SignupPage from './Pages/SignupPage';
+import Dashboard from './Pages/Dashboard';
+import PrivateRoute from './components/PrivateRoute'; // Adjust this path as needed
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
+import MobileMsg from './components/MobileMsg';
+import Loader from './components/Loader';
+import { useState, useEffect } from 'react';
+
+
+
+const App = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Threshold for mobile screens
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener("resize", handleResize); // Check on resize
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 15000); // Simulate a 5-second loading period
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isMobile) {
+    return <MobileMsg />;
+  }
+  if (loading) {
+    return <Loader />;
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route element={<PrivateRoute />} />
+            <Route path = "/dashboard" element = {<Dashboard />}/>
+        </Routes>
+        <Footer/>
+      </Router>
+    </Provider>
   );
-}
+};
 
 export default App;
