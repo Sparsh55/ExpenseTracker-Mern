@@ -1,7 +1,7 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 const NavBarContainer = styled.nav`
   display: flex;
@@ -46,14 +46,35 @@ const NavBar = () => {
 
   return (
     <NavBarContainer>
-      <Logo><img src = "./asset-allocation.png" alt ="logo" style = {{width:"40px",height:"40px",marginRight:"5px",marginBottom:"-10px"}}/>Expense Tracker</Logo>
+      <Logo>
+        <img
+          src="./asset-allocation.png"
+          alt="logo"
+          style={{
+            width: "40px",
+            height: "40px",
+            marginRight: "5px",
+            marginBottom: "-10px",
+          }}
+        />
+        Expense Tracker
+      </Logo>
       <NavItems>
         <NavItem to="/" exact>
           Home
         </NavItem>
-        <NavItem to="/login">Login</NavItem>
-        <NavItem to="/signup">Signup</NavItem>
-        {isAuthenticated && <NavItem to="/dashboard">Dashboard</NavItem>}
+        {isAuthenticated ? (
+          <>
+          <NavItem to="/dashboard">Dashboard</NavItem>
+          <NavItem to="/login">LogOut</NavItem>
+          </>
+        ) : (
+          <>
+            <NavItem to="/login">Login</NavItem>
+            <NavItem to="/signup">Signup</NavItem>
+            
+          </>
+        )}
       </NavItems>
     </NavBarContainer>
   );

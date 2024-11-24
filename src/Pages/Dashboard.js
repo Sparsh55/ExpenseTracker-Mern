@@ -12,11 +12,13 @@ const Dashboard = () => {
   const expenses = useSelector((state) => state.expenses.expenses);
 
   useEffect(() => {
+    console.log("user line 15", user);
     if (user) {
+      console.log("hello");
       dispatch(fetchExpenses(user.id));
     }
   }, [dispatch, user]);
-
+  console.log(expenses);
   return (
     <DashboardContainer>
       <Title>Your Dashboard</Title>

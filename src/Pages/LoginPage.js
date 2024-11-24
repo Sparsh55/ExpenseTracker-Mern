@@ -14,7 +14,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(login({ email, password })).unwrap();
+    await dispatch(login({ email, password }));
     navigate('/dashboard'); // Redirect to dashboard
   };
 
