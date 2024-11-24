@@ -1,12 +1,13 @@
 
 import {  Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import LoginPage from '../Pages/LoginPage';
-const PrivateRoute = ({ element, ...rest }) => {
+
+const PrivateRoute = ({children }) => {
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    const user = null
+    console.log("isAuthenticated", isAuthenticated);
+    if(!isAuthenticated){return <Navigate to = "/login" replace = {true}/>}
     
-    return user?<Outlet/> :<Navigate to = {LoginPage}/>
+    return children
   };
   
   export default PrivateRoute;

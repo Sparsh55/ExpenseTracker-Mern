@@ -6,7 +6,7 @@ import HomePage from './Pages/HomePage';
 import LoginPage from './Pages/LoginPage';
 import SignupPage from './Pages/SignupPage';
 import Dashboard from './Pages/Dashboard';
-import PrivateRoute from './components/PrivateRoute'; // Adjust this path as needed
+import PrivateRoute from './components/PrivateRoute';// Adjust this path as needed
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import MobileMsg from './components/MobileMsg';
@@ -16,6 +16,7 @@ import { useState, useEffect } from 'react';
 
 
 const App = () => {
+  console.log("delhi")
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const App = () => {
   if (loading) {
     return <Loader />;
   }
-
+console.log("hiiiii")
 
   return (
     <Provider store={store}>
@@ -54,8 +55,7 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route element={<PrivateRoute />} />
-            <Route path = "/dashboard" element = {<Dashboard />}/>
+            <Route path = "/dashboard" element = {<PrivateRoute><Dashboard /></PrivateRoute>}/>
         </Routes>
         <Footer/>
       </Router>

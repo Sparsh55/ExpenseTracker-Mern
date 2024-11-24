@@ -14,8 +14,17 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(login({ email, password }));
-    navigate('/dashboard'); // Redirect to dashboard
+    try {
+      const resp = await dispatch(login({ email, password }));
+      if (resp.status!==200) {
+        throw new Error("User is not authorized");
+      }
+      navigate('/dashboard'); // Redirect to dashboard
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
+    
   };
 
   return (
