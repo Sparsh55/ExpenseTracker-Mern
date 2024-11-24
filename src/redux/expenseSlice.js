@@ -7,12 +7,24 @@ const initialState = {
 };
 
 export const fetchExpenses = createAsyncThunk('expenses/fetchExpenses', async (userId) => {
-  const response = await axios.get(`/api/expenses/${userId}`);
+  const response = await axios.get(`http://localhost:5200/api/expense/${userId}`);
+  console.log("get", response.data);
   return response.data;
 });
 
 export const addExpense = createAsyncThunk('expenses/addExpense', async (expense) => {
-  const response = await axios.post('/api/expenses', expense);
+  const token = localStorage.getItem('token'); // Assuming the token is saved in localStorage
+  if (!token) {
+    throw new Error('No token found'); // Handle error if token is missing
+  }
+
+
+  const response = await axios.post('http://localhost:5200/api/expenses/', expense,{
+    headers: {
+      Authorization: `Bearer ${token}`, // Send token in Authorization header
+    }
+  });
+  console.log("post", response.data);
   return response.data;
 });
 

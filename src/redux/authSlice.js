@@ -8,10 +8,11 @@ const initialState = {
   error: null,
 };
 
-export const login = createAsyncThunk('auth/login', async ({ username, password }) => {
-  const response = await axios.post('http://localhost:5200/api/auth/login', { username, password });
+export const login = createAsyncThunk('auth/login', async ({ email, password }) => {
+  const response = await axios.post('http://localhost:5200/api/auth/login', { email, password });
   localStorage.setItem('token', response.data.token);
   axios.defaults.headers.common['Authorization'] = response.data.token;
+  console.log(response.data);
   return response.data;
 });
 

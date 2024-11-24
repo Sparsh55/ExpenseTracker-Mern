@@ -3,16 +3,18 @@ import { useDispatch } from 'react-redux';
 import { login } from '../redux/authSlice';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import ErrorNotification from '../components/ErrorNotification';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(login({ username, password })).unwrap();
+    await dispatch(login({ email, password })).unwrap();
     navigate('/dashboard'); // Redirect to dashboard
   };
 
@@ -23,10 +25,10 @@ const LoginPage = () => {
         <img src = "./vecteezy_paper-boat-flat-design-style-isolated_13828098.jpg" alt = "leaf" style={{width:"90px",height:"90px"}}/>
         <Form onSubmit={handleSubmit}>
           <Input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            type="emal"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
           />
           <Input
@@ -40,6 +42,8 @@ const LoginPage = () => {
           <p>Don't have an account? <a href="/signup">Sign Up</a></p>
         </Form>
       </Card>
+      {/* Conditionally render the error notification if there's an error */}
+      {error && <ErrorNotification message={error} />}
     </LoginContainer>
   );
 };

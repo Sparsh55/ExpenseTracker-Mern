@@ -8,8 +8,19 @@ const ExpenseForm = ({ userId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post('/api/expenses', { amount, category, userId });
+    const token = localStorage.getItem('token'); // Assuming the token is saved in localStorage
+
+    if (!token) {
+      // Handle case when token is not available
+      console.error('No authentication token found');
+      return;
+    }
+    await axios.post('http://localhost:5200/api/expenses/', { amount, category, userId },{
+      headers: {
+        Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+      }});
     // Handle expense addition
+    
   };
 
   return (
