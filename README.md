@@ -1,10 +1,11 @@
 # Expense Tracker App 📊💰
 
-![Expense Tracker](https://path-to-your-image.com/image.png)
+![Expense Tracker]()
 
 Welcome to the **Expense Tracker App**! This is a full MERN (MongoDB, Express, React, Node.js) stack application designed to help you manage your expenses efficiently and effortlessly.
 
 ## Features ✨
+<video width="100%" height="auto" autoplay loop muted> <source src="./src/ScreenShots/screen-capture (14).webm" type="video/mp4"> Your browser does not support the video tag. </video>
 
 - 🔐 **User Authentication**: Secure sign-up and login functionality.
 - 💵 **Expense Management**: Create, read, update, and delete expenses.
