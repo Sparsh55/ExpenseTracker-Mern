@@ -27,6 +27,7 @@ const Footer = () => {
           <Title>Contact Me</Title>
           <Text>Email: sparshsaxena9654@gmail.com</Text>
           <Text>Phone: +91 9068393605</Text>
+          <Text>GitHub: https://github.com/Sparsh55</Text>
         </Section>
       </FooterContent>
       <FooterBottom>

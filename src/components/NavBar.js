@@ -46,7 +46,7 @@ const NavBar = () => {
 
   return (
     <NavBarContainer>
-      <Logo>Expense Tracker</Logo>
+      <Logo><img src = "./asset-allocation.png" alt ="logo" style = {{width:"40px",height:"40px",marginRight:"5px",marginBottom:"-10px"}}/>Expense Tracker</Logo>
       <NavItems>
         <NavItem to="/" exact>
           Home

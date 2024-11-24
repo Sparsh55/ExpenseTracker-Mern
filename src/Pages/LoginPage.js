@@ -20,6 +20,7 @@ const LoginPage = () => {
     <LoginContainer>
       <Card>
         <Title>Welcome Back!</Title>
+        <img src = "./vecteezy_paper-boat-flat-design-style-isolated_13828098.jpg" alt = "leaf" style={{width:"90px",height:"90px"}}/>
         <Form onSubmit={handleSubmit}>
           <Input
             type="text"
